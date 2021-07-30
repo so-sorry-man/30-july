@@ -2,7 +2,6 @@ from allure_commons.types import AttachmentType
 from selenium import webdriver
 import allure
 import pytest
-import time
 
 
 @allure.severity(allure.severity_level.NORMAL)
@@ -54,7 +53,11 @@ class TestHRM:
 
             if subscribe==True:
                 assert True
+                allure.attach(self.driver.get_screenshot_as_png(), name="TrueScreen-30-07",
+                              attachment_type=(AttachmentType.PNG))
             else:
                 assert False
+                allure.attach(self.driver.get_screenshot_as_png(), name="FalseScreen-30-07",
+                              attachment_type=(AttachmentType.PNG))
             self.driver.close()
 
