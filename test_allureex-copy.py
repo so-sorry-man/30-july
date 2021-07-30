@@ -48,13 +48,14 @@ class TestHRM:
             self.driver.find_element_by_id("txtUsername").send_keys("Admin")
             self.driver.find_element_by_id("txtPassword").send_keys("admin123")
             self.driver.find_element_by_id("btnLogin").click()
+            time.sleep(5)
             self.driver.find_element_by_link_text("My Info")
-            self.driver.get("https://opensource-demo.orangehrmlive.com/index.php/pim/viewMyDetails") # в копии этого файла тест помечен в отчёте аллюра как Broken - AttributeError: 'WebDriver' object has no attribute 'getCurrentUrl'
-            subscribe = self.driver.find_element_by_id("Subscriber_link").is_displayed()
+            act_url=self.driver.url() # тест помечен в отчёте аллюра как Broken - AttributeError: 'WebDriver' object has no attribute 'getCurrentUrl'
 
-            if subscribe==True:
+            if act_url == "https://opensource-demo.orangehrmlive.com/index.php/dashboard":
+                allure.attach(self.driver.get_screenshot_as_png(), name="MyInfo-30-07", attachment_type=(AttachmentType.PNG))
+                self.driver.close()
                 assert True
             else:
+                self.driver.close()
                 assert False
-            self.driver.close()
-
