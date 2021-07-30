@@ -36,6 +36,6 @@ class TestHRM:
                 self.driver.close()
                 assert True
             else:
-                allure.attach(self.driver.get_screenshot_as_png(), name="LoginScreenNEW", attachment_type=(AttachmentType.PNG))
+                allure.attach(self.driver.get_screenshot_as_png(), name="LoginScreen-30-07", attachment_type=(AttachmentType.PNG))
                 self.driver.close()
                 assert False
